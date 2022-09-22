@@ -1,0 +1,13 @@
+{
+  "name": "momik/simple-mvc",
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "authors": [
+    {
+      "name": "momik"
+    }
+  ]
+}
