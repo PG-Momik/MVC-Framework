@@ -11,18 +11,42 @@ class Application
     public Response $response;
     public Router $router;
     public static Application $app;
+    public Controller $controller;
+    public Database $database;
+    public Session $session;
+
 
     /**
      * @param string $rootPath
      */
-    public function __construct(string $rootPath)
+    public function __construct(string $rootPath, array $config)
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+        $this->database = new Database($config['db']);
+        $this->session = new Session();
+
     }
+
+    /**
+     * @return Controller
+     */
+    public function getController(): Controller
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param Controller $controller
+     */
+    public function setController(Controller $controller): void
+    {
+        $this->controller = $controller;
+    }
+
 
     /**
      * @return void

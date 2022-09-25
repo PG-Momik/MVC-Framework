@@ -9,5 +9,8 @@
     {
       "name": "momik"
     }
-  ]
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.4"
+  }
 }

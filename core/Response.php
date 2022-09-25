@@ -12,4 +12,13 @@ class Response
     {
         http_response_code($code);
     }
+
+    /**
+     * @param $url
+     * @return void
+     */
+    public function redirect($url): void
+    {
+        header("Location: $url");
+    }
 }
