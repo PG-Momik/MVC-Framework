@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\form;
+namespace momik\simplemvc\form;
 
 class Form
 {

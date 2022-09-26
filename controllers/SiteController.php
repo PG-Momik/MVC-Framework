@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\core\Controller;
-use app\core\Request;
+use momik\simplemvc\Controller;
+use momik\simplemvc\Request;
 
 class SiteController extends Controller
 {

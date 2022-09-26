@@ -2,10 +2,10 @@
 
 namespace app\controllers;
 
-use app\core\Application;
-use app\core\Controller;
-use app\core\Request;
-use app\core\Response;
+use momik\simplemvc\Application;
+use momik\simplemvc\Controller;
+use momik\simplemvc\Request;
+use momik\simplemvc\Response;
 use app\models\LoginForm;
 use app\models\User;
 

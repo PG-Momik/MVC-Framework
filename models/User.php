@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use app\core\DbModel;
-use app\core\Validation;
+use momik\simplemvc\DbModel;
+use momik\simplemvc\Validation;
 
 class User extends DbModel
 {

@@ -1,13 +1,13 @@
 <?php
 
-/** @var  $this app\core\View */
+/** @var  $this momik\simplemvc\View */
 $this->title = "Register"
 
 ?>
 
 <h1>Register</h1>
 <?php
-$alert = \app\core\Application::$app->session->getFlash('success');
+$alert = \momik\simplemvc\Application::$app->session->getFlash('success');
 if ($alert) {
     ?>
     <p class="alert alert-success">

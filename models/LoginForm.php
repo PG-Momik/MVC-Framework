@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use \app\core\DbModel;
+use \momik\simplemvc\DbModel;
 
 class LoginForm extends DbModel
 {

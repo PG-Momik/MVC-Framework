@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 use app\controllers\AuthController;
 use app\controllers\SiteController;
-use app\core\Application;
+use momik\simplemvc\Application;
 
 $rootPath = dirname(__DIR__);
 

@@ -7,7 +7,7 @@ class m0002_something
      */
     public function up(): void
     {
-        $db = \app\core\Application::$app->database;
+        $db = \momik\simplemvc\Application::$app->database;
         $query = "ALTER TABLE users ADD COLUMN password VARCHAR(512) NOT NULL ";
         $db->pdo->exec($query);
     }
@@ -17,7 +17,7 @@ class m0002_something
      */
     public function down(): void
     {
-        $db = \app\core\Application::$app->database;
+        $db = \momik\simplemvc\Application::$app->database;
         $query = "ALTER TABLE users DROP COLUMN password ";
         $db->pdo->exec($query);
     }

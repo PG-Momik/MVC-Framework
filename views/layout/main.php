@@ -24,12 +24,12 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <?php
-                if (\app\core\Application::$app->session->get('uid')): ?>
+                if (\momik\simplemvc\Application::$app->session->get('uid')): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout(<?= \app\core\Application::$app->session->get(
+                        <a class="nav-link" href="/logout">Logout(<?= \momik\simplemvc\Application::$app->session->get(
                                 'uname'
                             ) ?>)</a>
                     </li>

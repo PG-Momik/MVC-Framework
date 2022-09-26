@@ -1,6 +1,6 @@
 <?php
 
-/** @var  $this app\core\View */
+/** @var  $this momik\simplemvc\View */
 $this->title = "Login"
 
 ?>
@@ -9,7 +9,7 @@ $this->title = "Login"
 <form action="" method="post">
     <?php
 
-    use app\core\form\Form;
+    use momik\simplemvc\form\Form;
 
     Form::open(method:"post");
     echo Form::field('email', ['id' => 'email', 'name' => 'email', 'label' => 'Email']);
