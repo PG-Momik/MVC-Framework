@@ -1,3 +1,10 @@
+<?php
+
+/** @var  $this app\core\View */
+$this->title = "Register"
+
+?>
+
 <h1>Register</h1>
 <?php
 $alert = \app\core\Application::$app->session->getFlash('success');

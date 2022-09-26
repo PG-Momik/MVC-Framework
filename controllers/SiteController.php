@@ -16,6 +16,9 @@ class SiteController extends Controller
         return $this->render('home', $params);
     }
 
+    /**
+     * @return bool|array|string
+     */
     public function contact(): bool|array|string
     {
         $params = [];
@@ -23,6 +26,10 @@ class SiteController extends Controller
         return $this->render('contact', $params);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
     public function handleContact(Request $request): string
     {
         $body = $request->getBody();

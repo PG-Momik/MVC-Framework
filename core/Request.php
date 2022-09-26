@@ -34,7 +34,8 @@ class Request
                 break;
             case "post":
                 foreach ($_POST as $key => $value) {
-                    $sanitizedBody[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+//                    $sanitizedBody[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    $sanitizedBody[$key] = $value;
                 }
                 break;
         }
@@ -56,5 +57,24 @@ class Request
     public function isPost(): bool
     {
         return $this->method() == 'post';
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function set($key, $value): void
+    {
+        $_POST[$key] = $value;
+    }
+
+    /**
+     * @param $key
+     * @return string
+     */
+    public function get($key): string
+    {
+        return $_POST[$key];
     }
 }

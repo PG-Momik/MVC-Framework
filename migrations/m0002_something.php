@@ -1,5 +1,7 @@
 <?php
-class m0002_something{
+
+class m0002_something
+{
     /**
      * @return void
      */

@@ -2,22 +2,13 @@
 
 namespace app\models;
 
-use app\core\DbModel;
-use app\core\Validation;
+use \app\core\DbModel;
 
-class User extends DbModel
+class LoginForm extends DbModel
 {
-    public string $id;
-    public string $firstname;
-    public string $lastname;
-    public string $phone;
-    public string $email;
-    public string $city;
-    public string $state;
-    public string $password;
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function tableName(): string
     {
@@ -25,7 +16,7 @@ class User extends DbModel
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function primaryKey(): string
     {
@@ -33,7 +24,7 @@ class User extends DbModel
     }
 
     /**
-     * @return string[]
+     * @inheritDoc
      */
     public function fields(): array
     {
@@ -48,11 +39,5 @@ class User extends DbModel
         ];
     }
 
-    /**
-     * @return bool
-     */
-    public function register(): bool
-    {
-        return $this->save();
-    }
+
 }

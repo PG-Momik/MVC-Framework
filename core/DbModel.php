@@ -114,4 +114,35 @@ abstract class DbModel extends Model
 
         return $db->pdo->exec($query);
     }
+
+    /**
+     * @param array $where
+     * @return mixed
+     */
+    public function findOne(array $where): mixed
+    {
+        $whereStmt = $this->getWhere($where);
+        $table = $this->tableName();
+        $query = "SELECT * from $table WHERE $whereStmt";
+        $db = Application::$app->database;
+        $stmt = $db->pdo->prepare($query);
+        $stmt->execute($where);
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC) ?? false;
+    }
+
+    /**
+     * @param array $where
+     * @return string
+     */
+    private function getWhere(array $where): string
+    {
+        $stmtArr = array();
+        foreach ($where as $key => $value) {
+            $stmtArr[] = "$key = :$key";
+        }
+
+        return implode('AND, ', $stmtArr);
+    }
+
 }

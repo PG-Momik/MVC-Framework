@@ -25,7 +25,7 @@ class m0001_initial
     public function down(): void
     {
         $db = \app\core\Application::$app->database;
-        $query  = "DROP TABLE users";
+        $query = "DROP TABLE users";
         $db->pdo->exec($query);
     }
 }

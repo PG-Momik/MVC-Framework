@@ -13,14 +13,14 @@ class Controller
 
     public function render(string $view, array $params): string|array|bool
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::$app->view->renderView($view, $params);
     }
 
     /**
      * @param $layout
      * @return void
      */
-    public function setLayout($layout):void
+    public function setLayout($layout): void
     {
         $this->layout = $layout;
     }
