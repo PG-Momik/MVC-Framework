@@ -1,6 +1,6 @@
 <?php
 
-namespace momik\simplemvc\form;
+namespace momik\simplemvc\core\form;
 
 class Field
 {

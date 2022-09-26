@@ -1,6 +1,6 @@
 <?php
 
-namespace momik\simplemvc;
+namespace momik\simplemvc\core;
 
 abstract class DbModel extends Model
 {

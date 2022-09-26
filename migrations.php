@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use momik\simplemvc\Application;
+use momik\simplemvc\core\Application;
 
 $rootPath = dirname(__DIR__);
 

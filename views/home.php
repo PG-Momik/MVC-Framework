@@ -1,6 +1,6 @@
 <?php
 
-/** @var  $this momik\simplemvc\View */
+/** @var  $this momik\simplemvc\core\View */
 $this->title = "Home";
 
 

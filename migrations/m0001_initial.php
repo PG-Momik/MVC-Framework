@@ -7,7 +7,7 @@ class m0001_initial
      */
     public function up(): void
     {
-        $db = \momik\simplemvc\Application::$app->database;
+        $db = \momik\simplemvc\core\Application::$app->database;
         $query = "CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
@@ -24,7 +24,7 @@ class m0001_initial
      */
     public function down(): void
     {
-        $db = \momik\simplemvc\Application::$app->database;
+        $db = \momik\simplemvc\core\Application::$app->database;
         $query = "DROP TABLE users";
         $db->pdo->exec($query);
     }

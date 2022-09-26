@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace momik\simplemvc\controllers;
 
-use momik\simplemvc\Controller;
-use momik\simplemvc\Request;
+use momik\simplemvc\core\Controller;
+use momik\simplemvc\core\Request;
 
 class SiteController extends Controller
 {

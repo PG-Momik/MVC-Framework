@@ -1,8 +1,8 @@
 <?php
 
-namespace momik\simplemvc;
+namespace momik\simplemvc\core;
 
-use app\models\User;
+use momik\simplemvc\models\User;
 
 class Application
 {

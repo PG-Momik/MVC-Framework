@@ -1,6 +1,6 @@
 <?php
 
-/** @var  $this momik\simplemvc\View */
+/** @var  $this momik\simplemvc\core\View */
 $this->title = "Contact us"
 
 ?>
@@ -9,7 +9,7 @@ $this->title = "Contact us"
 <form action="" method="post">
     <?php
 
-    use momik\simplemvc\form\Form;
+    use momik\simplemvc\core\form\Form;
 
     Form::open();
     echo Form::field('text', ['id' => 'uname', 'name' => 'uname', 'label' => 'Username']);

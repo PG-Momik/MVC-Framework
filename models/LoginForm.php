@@ -1,8 +1,9 @@
 <?php
 
-namespace app\models;
+namespace momik\simplemvc\models;
 
-use \momik\simplemvc\DbModel;
+
+use momik\simplemvc\core\DbModel;
 
 class LoginForm extends DbModel
 {

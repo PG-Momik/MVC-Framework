@@ -1,13 +1,13 @@
 <?php
 
-namespace app\controllers;
+namespace momik\simplemvc\controllers;
 
-use momik\simplemvc\Application;
-use momik\simplemvc\Controller;
-use momik\simplemvc\Request;
-use momik\simplemvc\Response;
-use app\models\LoginForm;
-use app\models\User;
+use momik\simplemvc\core\Application;
+use momik\simplemvc\core\Controller;
+use momik\simplemvc\core\Request;
+use momik\simplemvc\core\Response;
+use momik\simplemvc\models\LoginForm;
+use momik\simplemvc\models\User;
 
 class AuthController extends Controller
 {

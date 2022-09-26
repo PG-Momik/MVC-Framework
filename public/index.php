@@ -6,9 +6,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use app\controllers\AuthController;
-use app\controllers\SiteController;
-use momik\simplemvc\Application;
+use momik\simplemvc\controllers\AuthController;
+use momik\simplemvc\controllers\SiteController;
+use momik\simplemvc\core\Application;
 
 $rootPath = dirname(__DIR__);
 
