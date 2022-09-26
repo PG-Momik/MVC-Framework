@@ -9,10 +9,10 @@ class Model
      * @param array $data
      * @return void
      */
-    public function fillProperties(array $data): void
+    public function initializeProperties(array $data): void
     {
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
+        foreach ( $data as $key => $value ) {
+            if ( property_exists($this, $key) ) {
                 $this->$key = $value;
             }
         }

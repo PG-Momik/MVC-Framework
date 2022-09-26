@@ -4,7 +4,8 @@ namespace momik\simplemvc\core;
 
 class Router
 {
-    public Request $request;
+
+    public Request  $request;
     public Response $response;
 
     protected array $routes = [];
@@ -15,7 +16,7 @@ class Router
      */
     public function __construct(Request $request, Response $response)
     {
-        $this->request = $request;
+        $this->request  = $request;
         $this->response = $response;
     }
 
@@ -39,20 +40,20 @@ class Router
      */
     public function resolve(): mixed
     {
-        $path = $this->request->getPath();
-        $method = $this->request->method();
+        $path     = $this->request->getPath();
+        $method   = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-        if (!$callback) {
+        if ( !$callback ) {
             Application::$app->response->setStatusCode(404);
 
             return "Page not found";
         }
-        if (is_string($callback)) {
+        if ( is_string($callback) ) {
             return Application::$app->view->renderView($callback);
         }
-        if (is_array($callback)) {
+        if ( is_array($callback) ) {
             Application::$app->controller = new $callback[0];
-            $callback[0] = Application::$app->controller;
+            $callback[0]                  = Application::$app->controller;
         }
 
         return call_user_func($callback, $this->request, $this->response);

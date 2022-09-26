@@ -4,6 +4,7 @@ namespace momik\simplemvc\core;
 
 abstract class DbModel extends Model
 {
+
     /**
      * @return string
      */
@@ -25,15 +26,15 @@ abstract class DbModel extends Model
     public function save(): bool
     {
         $tableName = $this->tableName();
-        $fields = $this->fields();
-        $db = Application::$app->database;
+        $fields    = $this->fields();
+        $db        = Application::$app->database;
 
         $queryPart1 = "INSERT INTO $tableName ";
         $queryPart2 = implode(', ', $fields);
         $queryPart2 = "(" . $queryPart2 . ")";
 
         $values = array();
-        foreach ($fields as $field) {
+        foreach ( $fields as $field ) {
             $values[] = "'" . $this->$field . "'";
         }
 
@@ -49,14 +50,13 @@ abstract class DbModel extends Model
      * @param $id
      * @return object|false
      */
-    public function fetch($id): object|false
+    public function fetch($id): object | false
     {
-        $tableName = $this->tableName();
+        $tableName  = $this->tableName();
         $primaryKey = $this->primaryKey();
-        $db = Application::$app->database;
-
-        $query = "SELECT * FROM $tableName WHERE $primaryKey = $id";
-        $stmt = $db->pdo->prepare($query);
+        $db         = Application::$app->database;
+        $query      = "SELECT * FROM $tableName WHERE $primaryKey = $id";
+        $stmt       = $db->pdo->prepare($query);
         $stmt->execute();
 
         return $stmt->fetch(\PDO::FETCH_OBJ);
@@ -65,14 +65,14 @@ abstract class DbModel extends Model
     /**
      * @return bool|array
      */
-    public function show(): bool|array
+    public function show(): bool | array
     {
-        $tableName = $this->tableName();
+        $tableName  = $this->tableName();
         $primaryKey = $this->primaryKey();
-        $db = Application::$app->database;
+        $db         = Application::$app->database;
 
         $query = "SELECT * FROM $tableName";
-        $stmt = $db->pdo->prepare($query);
+        $stmt  = $db->pdo->prepare($query);
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -84,19 +84,19 @@ abstract class DbModel extends Model
      */
     public function update($id): bool
     {
-        $tableName = $this->tableName();
+        $tableName  = $this->tableName();
         $primaryKey = $this->primaryKey();
-        $fields = $this->fields();
+        $fields     = $this->fields();
 
-        $db = Application::$app->database;
+        $db         = Application::$app->database;
         $queryPart1 = "UPDATE $tableName SET  ";
         $updateText = array();
-        foreach ($fields as $field) {
+        foreach ( $fields as $field ) {
             $updateText[] = "$field = $this->$field";
         }
         $queryPart2 = implode(', ', $updateText);
         $queryPart3 = "WHERE $primaryKey = $id";
-        $query = $queryPart1 . $queryPart2 . $queryPart3;
+        $query      = $queryPart1 . $queryPart2 . $queryPart3;
 
         return $db->pdo->exec($query);
     }
@@ -107,10 +107,10 @@ abstract class DbModel extends Model
      */
     public function delete($id): bool
     {
-        $tableName = $this->tableName();
+        $tableName  = $this->tableName();
         $primaryKey = $this->primaryKey();
-        $db = Application::$app->database;
-        $query = "DELETE FROM $tableName WHERE $primaryKey = $id";
+        $db         = Application::$app->database;
+        $query      = "DELETE FROM $tableName WHERE $primaryKey = $id";
 
         return $db->pdo->exec($query);
     }
@@ -122,10 +122,10 @@ abstract class DbModel extends Model
     public function findOne(array $where): mixed
     {
         $whereStmt = $this->getWhere($where);
-        $table = $this->tableName();
-        $query = "SELECT * from $table WHERE $whereStmt";
-        $db = Application::$app->database;
-        $stmt = $db->pdo->prepare($query);
+        $table     = $this->tableName();
+        $query     = "SELECT * from $table WHERE $whereStmt";
+        $db        = Application::$app->database;
+        $stmt      = $db->pdo->prepare($query);
         $stmt->execute($where);
 
         return $stmt->fetch(\PDO::FETCH_ASSOC) ?? false;
@@ -138,7 +138,7 @@ abstract class DbModel extends Model
     private function getWhere(array $where): string
     {
         $stmtArr = array();
-        foreach ($where as $key => $value) {
+        foreach ( $where as $key => $value ) {
             $stmtArr[] = "$key = :$key";
         }
 

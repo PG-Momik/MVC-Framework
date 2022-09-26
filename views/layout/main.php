@@ -1,3 +1,6 @@
+<?php
+
+use  \momik\simplemvc\core\Application; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,14 +27,14 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <?php
-                if (\momik\simplemvc\core\Application::$app->session->get('uid')): ?>
+                if ( Application::$app->session->get('uid') ): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout(<?= \momik\simplemvc\core\Application::$app->session->get(
-                                'uname'
-                            ) ?>)</a>
+                        <a class="nav-link"
+                           href="/logout">Logout <?= Application::$app->session->get('uname') ?>
+                        </a>
                     </li>
 
                 <?php

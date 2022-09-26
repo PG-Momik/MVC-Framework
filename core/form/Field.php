@@ -4,31 +4,32 @@ namespace momik\simplemvc\core\form;
 
 class Field
 {
+
     public string $type;
-    public array $attributes = [
-        'id' => '',
-        'name' => '',
-        'label' => '',
-        'class' => '',
+    public array  $attributes = [
+        'id'          => '',
+        'name'        => '',
+        'label'       => '',
+        'class'       => '',
         'placeholder' => '',
-        'value' => '',
-        'min' => false,
-        'max' => false,
-        'length' => false,
-        'required' => false,
+        'value'       => '',
+        'min'         => false,
+        'max'         => false,
+        'length'      => false,
+        'required'    => false,
     ];
-    public string $errorMsg = '';
+    public string $errorMsg   = '';
 
     /**
      * @param string $type
      * @param array|string $attributes
      * @param string $errorMsg
      */
-    public function __construct(string $type, array|string $attributes = '', string $errorMsg = '')
+    public function __construct(string $type, array | string $attributes = '', string $errorMsg = '')
     {
         $this->type = $type;
-        if (is_array($attributes)) {
-            foreach ($attributes as $key => $attribute) {
+        if ( is_array($attributes) ) {
+            foreach ( $attributes as $key => $attribute ) {
                 $this->attributes["$key"] = $attribute;
             }
         }
@@ -40,15 +41,17 @@ class Field
      */
     public function __toString(): string
     {
-        $opening = "<div class='form-group'>";
-        $id = $this->attributes['id'];
-        $label = $this->attributes['label'];
-        $min = $this->attributes['min'];
-        $max = $this->attributes['max'];
-        $length = $this->attributes['length'];
+        $opening  = "<div class='form-group'>";
+        $id       = $this->attributes['id'];
+        $label    = $this->attributes['label'];
+        $min      = $this->attributes['min'];
+        $max      = $this->attributes['max'];
+        $length   = $this->attributes['length'];
         $required = $this->attributes['required'] ? "required" : '';
 
         $labelTag = "<label for='$id'>$label</label>";
+        $errMsg   = "<div class='invalid-feedback'>$this->errorMsg</div>";
+        $closing  = "</div>";
         $inputTag = sprintf(
             "<input type='%s' id='%s' name='%s'
                             placeholder='%s' 
@@ -64,8 +67,6 @@ class Field
             $length ? "length=$length" : '',
             $required ? "required=true" : ''
         );
-        $errMsg = "<div class='invalid-feedback'>$this->errorMsg</div>";
-        $closing = "</div>";
 
         return $opening . $labelTag . $inputTag . $errMsg . $closing;
     }

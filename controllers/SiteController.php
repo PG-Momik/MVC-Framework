@@ -3,11 +3,11 @@
 namespace momik\simplemvc\controllers;
 
 use momik\simplemvc\core\Controller;
-use momik\simplemvc\core\Request;
 
 class SiteController extends Controller
 {
-    public function home(): bool|array|string
+
+    public function home(): bool | array | string
     {
         $params = [
             'name' => "momik"
@@ -19,24 +19,11 @@ class SiteController extends Controller
     /**
      * @return bool|array|string
      */
-    public function contact(): bool|array|string
+    public function contact(): bool | array | string
     {
         $params = [];
 
         return $this->render('contact', $params);
     }
 
-    /**
-     * @param Request $request
-     * @return string
-     */
-    public function handleContact(Request $request): string
-    {
-        $body = $request->getBody();
-        echo "<pre>";
-        var_dump($body);
-        echo "</pre>";
-
-        return "handle";
-    }
 }
