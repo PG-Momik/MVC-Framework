@@ -31,7 +31,7 @@ class Form
      * @param string $errorMsg
      * @return Field
      */
-    public static function field(string $type, array|string $attributes='', string $errorMsg = ''): Field
+    public static function field(string $type, array|string $attributes = '', string $errorMsg = ''): Field
     {
         return new Field($type, $attributes, $errorMsg);
     }

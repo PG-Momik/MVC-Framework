@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-use app\core\Request;
+use app\models\User;
 
 class Application
 {
@@ -14,10 +14,13 @@ class Application
     public Controller $controller;
     public Database $database;
     public Session $session;
-
+    public User $user;
+    public bool $isGuest = true;
+    public View $view;
 
     /**
      * @param string $rootPath
+     * @param array $config
      */
     public function __construct(string $rootPath, array $config)
     {
@@ -28,7 +31,8 @@ class Application
         $this->router = new Router($this->request, $this->response);
         $this->database = new Database($config['db']);
         $this->session = new Session();
-
+        $this->user = new User();
+        $this->view = new View();
     }
 
     /**
@@ -55,6 +59,5 @@ class Application
     {
         echo $this->router->resolve();
     }
-
 
 }

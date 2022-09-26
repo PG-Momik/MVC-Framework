@@ -48,55 +48,14 @@ class Router
             return "Page not found";
         }
         if (is_string($callback)) {
-            return $this->renderView($callback);
+            return Application::$app->view->renderView($callback);
         }
         if (is_array($callback)) {
             Application::$app->controller = new $callback[0];
             $callback[0] = Application::$app->controller;
         }
 
-        return call_user_func($callback, $this->request);
-    }
-
-    /**
-     * @param string $view
-     * @param array $params
-     * @return array|false|string|string[]
-     */
-    public function renderView(string $view, array $params = []): array|bool|string
-    {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
-
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    /**
-     * @return false|string
-     */
-    protected function layoutContent(): bool|string
-    {
-        $layout = Application::$app->controller->layout;
-
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/layout/$layout.php";
-
-        return ob_get_clean();
-    }
-
-    /**
-     * @param string $view
-     * @return bool|string
-     */
-    protected function renderOnlyView(string $view, $params): bool|string
-    {
-        foreach ($params as $index => $param) {
-            $$index = $param;
-        }
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-
-        return ob_get_clean();
+        return call_user_func($callback, $this->request, $this->response);
     }
 
 
