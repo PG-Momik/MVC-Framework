@@ -7,6 +7,7 @@ class m0001_test
      */
     public function up(): void
     {
+        //sql query goes here
     }
 
     /**
@@ -14,5 +15,6 @@ class m0001_test
      */
     public function down(): void
     {
+        //sql query goes here
     }
 }
