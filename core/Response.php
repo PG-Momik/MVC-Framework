@@ -4,6 +4,7 @@ namespace momik\simplemvc\core;
 
 class Response
 {
+
     /**
      * @param int $code
      * @return void
@@ -21,4 +22,5 @@ class Response
     {
         header("Location: $url");
     }
+
 }

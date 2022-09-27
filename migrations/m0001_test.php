@@ -2,6 +2,7 @@
 
 class m0001_test
 {
+
     /**
      * @return void
      */
@@ -17,4 +18,5 @@ class m0001_test
     {
         //sql query goes here
     }
+
 }

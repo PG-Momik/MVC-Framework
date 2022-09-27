@@ -6,6 +6,7 @@ use momik\simplemvc\core\DbModel;
 
 class User extends DbModel
 {
+
     public string $id;
     public string $firstname;
     public string $lastname;
@@ -55,4 +56,5 @@ class User extends DbModel
     {
         return $this->save();
     }
+
 }

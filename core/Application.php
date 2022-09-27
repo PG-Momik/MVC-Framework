@@ -6,17 +6,18 @@ use momik\simplemvc\models\User;
 
 class Application
 {
-    public static string $ROOT_DIR;
-    public Request $request;
-    public Response $response;
-    public Router $router;
+
+    public static string      $ROOT_DIR;
+    public Request            $request;
+    public Response           $response;
+    public Router             $router;
     public static Application $app;
-    public Controller $controller;
-    public Database $database;
-    public Session $session;
-    public User $user;
-    public bool $isGuest = true;
-    public View $view;
+    public Controller         $controller;
+    public Database           $database;
+    public Session            $session;
+    public User               $user;
+    public bool               $isGuest = true;
+    public View               $view;
 
     /**
      * @param string $rootPath
@@ -25,14 +26,14 @@ class Application
     public function __construct(string $rootPath, array $config)
     {
         self::$ROOT_DIR = $rootPath;
-        self::$app = $this;
-        $this->request = new Request();
+        self::$app      = $this;
+        $this->request  = new Request();
         $this->response = new Response();
-        $this->router = new Router($this->request, $this->response);
+        $this->router   = new Router($this->request, $this->response);
         $this->database = new Database($config['db']);
-        $this->session = new Session();
-        $this->user = new User();
-        $this->view = new View();
+        $this->session  = new Session();
+        $this->user     = new User();
+        $this->view     = new View();
     }
 
     /**

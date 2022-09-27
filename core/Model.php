@@ -11,8 +11,8 @@ class Model
      */
     public function fillProperties(array $data): void
     {
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
+        foreach ( $data as $key => $value ) {
+            if ( property_exists($this, $key) ) {
                 $this->$key = $value;
             }
         }

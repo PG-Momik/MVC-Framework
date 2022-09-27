@@ -12,12 +12,12 @@ $dotenv->load();
 
 $config = [
     'db' => [
-        'dsn' => $_ENV['DB_DSN'],
-        'user' => $_ENV['DB_USER'],
+        'dsn'      => $_ENV['DB_DSN'],
+        'user'     => $_ENV['DB_USER'],
         'password' => $_ENV['DB_PASSWORD'],
     ]
 ];
-$app = new Application(dirname(__DIR__), $config);
+$app    = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/test', [TestController::class, 'index']);
 $app->router->post('/test', [TestController::class, 'index']);

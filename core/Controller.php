@@ -4,6 +4,7 @@ namespace momik\simplemvc\core;
 
 class Controller
 {
+
     /**
      * @param string $view
      * @param array $params
@@ -11,7 +12,7 @@ class Controller
      */
     public string $layout = 'main';
 
-    public function render(string $view, array $params): string|array|bool
+    public function render(string $view, array $params): string | array | bool
     {
         return Application::$app->view->renderView($view, $params);
     }
@@ -24,4 +25,5 @@ class Controller
     {
         $this->layout = $layout;
     }
+
 }
