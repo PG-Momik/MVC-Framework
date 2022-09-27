@@ -16,8 +16,6 @@ class Application
     public Database           $database;
     public Session            $session;
     public User               $user;
-    public bool               $isGuest = true;
-    public View               $view;
 
     /**
      * @param string $rootPath
@@ -33,7 +31,6 @@ class Application
         $this->database = new Database($config['db']);
         $this->session  = new Session();
         $this->user     = new User();
-        $this->view     = new View();
     }
 
     /**

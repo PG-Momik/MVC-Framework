@@ -69,6 +69,10 @@ class Session
         unset($_SESSION[$key]);
     }
 
+    public function exists($key):bool {
+        return isset($_SESSION[$key]);
+    }
+
     public function __destruct()
     {
         $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
@@ -79,5 +83,7 @@ class Session
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
+
+
 
 }

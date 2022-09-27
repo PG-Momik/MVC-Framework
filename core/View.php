@@ -5,19 +5,48 @@ namespace momik\simplemvc\core;
 class View
 {
 
-    public string $title = '';
+    /**
+     * @param string $view
+     * @param array $params
+     */
+    public function __construct(protected string $view, protected array $params = []) {}
 
     /**
      * @param string $view
      * @param array $params
-     * @return array|false|string|string[]
+     * @return static
      */
-    public function renderView(string $view, array $params = []): array | bool | string
+    public static function make(string $view, array $params = []): static
     {
-        $viewContent   = $this->renderOnlyView($view, $params);
+        return new static($view, $params);
+    }
+
+    /**
+     * @return string|string[]
+     */
+    public function renderView(): string
+    {
+        $viewContent   = $this->renderOnlyView();
         $layoutContent = $this->layoutContent();
 
         return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    /**
+     * @param string $view
+     * @param $params
+     * @return bool|string
+     */
+    protected function renderOnlyView(): bool | string
+    {
+        foreach ( $this->params as $index => $param ) {
+            $$index = $param;
+        }
+
+        ob_start();
+        include_once Application::$ROOT_DIR . "/views/$this->view.php";
+
+        return ob_get_clean();
     }
 
     /**
@@ -34,19 +63,11 @@ class View
     }
 
     /**
-     * @param string $view
-     * @param $params
-     * @return bool|string
+     * @return string
      */
-    protected function renderOnlyView(string $view, $params): bool | string
+    public function __toString(): string
     {
-        foreach ( $params as $index => $param ) {
-            $$index = $param;
-        }
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-
-        return ob_get_clean();
+        return $this->renderView();
     }
 
 }

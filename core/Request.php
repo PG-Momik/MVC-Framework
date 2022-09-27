@@ -5,7 +5,10 @@ namespace momik\simplemvc\core;
 class Request
 {
 
-    public function getPath()
+    /**
+     * @return string
+     */
+    public function getPath(): string
     {
         $path     = $_SERVER['REQUEST_URI'] ?? "/";
         $position = strpos($path, "?");
@@ -16,6 +19,9 @@ class Request
         return substr($path, 0, $position);
     }
 
+    /**
+     * @return string
+     */
     public function method(): string
     {
         return mb_strtolower($_SERVER['REQUEST_METHOD']);

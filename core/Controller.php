@@ -11,12 +11,7 @@ class Controller
      * @return string|array|bool
      */
     public string $layout = 'main';
-
-    public function render(string $view, array $params): string | array | bool
-    {
-        return Application::$app->view->renderView($view, $params);
-    }
-
+    
     /**
      * @param $layout
      * @return void
