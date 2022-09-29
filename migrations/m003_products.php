@@ -1,6 +1,6 @@
 <?php
 
-class m002_users
+class m003_products
 {
 
     /**

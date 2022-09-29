@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $user         = Application::$app->user;
         $user->id     = Application::$app->session->get('uid');
-        $this->params = $user->findOne(['id' => $user->id]);
+        $this->params = $user->findOne(array('id' => $user->id));
 
         return View::make('profile', $this->params);
     }
