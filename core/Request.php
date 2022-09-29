@@ -4,17 +4,24 @@ namespace momik\simplemvc\core;
 
 class Request
 {
-    public function getPath()
+
+    /**
+     * @return string
+     */
+    public function getPath(): string
     {
-        $path = $_SERVER['REQUEST_URI'] ?? "/";
+        $path     = $_SERVER['REQUEST_URI'] ?? "/";
         $position = strpos($path, "?");
-        if (!$position) {
+        if ( !$position ) {
             return $path;
         }
 
         return substr($path, 0, $position);
     }
 
+    /**
+     * @return string
+     */
     public function method(): string
     {
         return mb_strtolower($_SERVER['REQUEST_METHOD']);
@@ -26,14 +33,14 @@ class Request
     public function getBody(): array
     {
         $sanitizedBody = [];
-        switch ($this->method()) {
+        switch ( $this->method() ) {
             case "get":
-                foreach ($_GET as $key => $value) {
+                foreach ( $_GET as $key => $value ) {
                     $sanitizedBody[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                 }
                 break;
             case "post":
-                foreach ($_POST as $key => $value) {
+                foreach ( $_POST as $key => $value ) {
 //                    $sanitizedBody[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                     $sanitizedBody[$key] = $value;
                 }
@@ -77,4 +84,5 @@ class Request
     {
         return $_POST[$key];
     }
+
 }

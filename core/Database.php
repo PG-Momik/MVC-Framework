@@ -4,6 +4,7 @@ namespace momik\simplemvc\core;
 
 class Database
 {
+
     public \PDO $pdo;
 
     /**
@@ -11,9 +12,9 @@ class Database
      */
     public function __construct(array $config)
     {
-        $dsn = $config['dsn'] ?? '';
-        $user = $config['user'] ?? '';
-        $password = $config['password'] ?? '';
+        $dsn       = $config['dsn'] ?? '';
+        $user      = $config['user'] ?? '';
+        $password  = $config['password'] ?? '';
         $this->pdo = new \PDO($dsn, $user, $password);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
@@ -24,23 +25,23 @@ class Database
     public function applyMigration(): void
     {
         $this->createMigrationsTable();
-        $appliedMigrations = $this->getAppliedMigrations();
-        $newMigrations = array();
-        $files = scandir(Application::$ROOT_DIR . '/migrations');
+        $appliedMigrations   = $this->getAppliedMigrations();
+        $newMigrations       = array();
+        $files               = scandir(Application::$ROOT_DIR . '/migrations');
         $unappliedMigrations = array_diff($files, $appliedMigrations);
-        foreach ($unappliedMigrations as $unappliedMigration) {
-            if ($unappliedMigration == "." or $unappliedMigration == '..') {
+        foreach ( $unappliedMigrations as $unappliedMigration ) {
+            if ( $unappliedMigration == "." or $unappliedMigration == '..' ) {
                 continue;
             }
             require_once Application::$ROOT_DIR . '/migrations/' . $unappliedMigration;
             $className = pathinfo($unappliedMigration, PATHINFO_FILENAME);
-            $instance = new $className();
+            $instance  = new $className();
             $instance->up();
             echo "Applied migration $unappliedMigration" . PHP_EOL;
             $newMigrations[] = $unappliedMigration;
         }
 
-        if (!empty($newMigrations)) {
+        if ( !empty($newMigrations) ) {
             $this->saveMigrations($newMigrations);
         } else {
             $this->log("ALl migrations are applied.");
@@ -60,10 +61,10 @@ class Database
     /**
      * @return array|false
      */
-    public function getAppliedMigrations(): bool|array
+    public function getAppliedMigrations(): bool | array
     {
         $query = "SELECT migration FROM migrations";
-        $stmt = $this->pdo->prepare($query);
+        $stmt  = $this->pdo->prepare($query);
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_COLUMN);
@@ -75,11 +76,11 @@ class Database
      */
     private function saveMigrations(array $newMigrations): void
     {
-        $queryPart1 = "INSERT INTO migrations (migration) VALUES ";
+        $queryPart1    = "INSERT INTO migrations (migration) VALUES ";
         $newMigrations = array_map(fn($m) => "('$m')", $newMigrations);
-        $queryPart2 = implode(', ', $newMigrations);
-        $query = $queryPart1 . $queryPart2;
-        $stmt = $this->pdo->prepare($query);
+        $queryPart2    = implode(', ', $newMigrations);
+        $query         = $queryPart1 . $queryPart2;
+        $stmt          = $this->pdo->prepare($query);
         $stmt->execute();
     }
 
@@ -91,4 +92,5 @@ class Database
     {
         echo '[' . date('Y-m-d H:i:s') . ']' . $message . PHP_EOL;
     }
+
 }
